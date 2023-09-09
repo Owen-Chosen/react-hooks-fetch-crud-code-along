@@ -12,18 +12,20 @@ function ItemForm({ onAddItem }) {
       isInCart: false,
     };
     fetch("http://localhost:4000/items", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(itemData),
-    })
-      .then((r) => r.json())
-      .then((newItem) => onAddItem(newItem));
-  }
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(itemData),
+  })
+    .then((r) => r.json())
+    .then((newItem) => onAddItem(newItem));
+}
+    
+
 
   return (
-    <form className="NewItem">
+    <form className="NewItem"  onSubmit={handleSubmit}>
       <label>
         Name:
         <input
@@ -47,7 +49,7 @@ function ItemForm({ onAddItem }) {
         </select>
       </label>
 
-      <button type="submit" onSubmit={handleSubmit}>Add to List</button>
+      <button type="submit">Add to List</button>
     </form>
   );
 }
